@@ -3,4 +3,4 @@ def test_true():
 
 
 def test_false():
-    assert False == False
+    assert False is False

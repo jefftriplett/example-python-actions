@@ -1,8 +1,8 @@
 workflow "Build and Test" {
   on = "push"
   resolves = [
-    "Test",
     "Master",
+    "Lint",
   ]
 }
 
@@ -11,13 +11,13 @@ action "Build" {
   args = "install -r requirements.txt"
 }
 
-action "Test" {
+action "Lint" {
   uses = "jefftriplett/python-actions/action-black@master"
   args = "."
   needs = ["Build"]
 }
 
-action "jefftriplett/python-actions/action-pytest@master" {
+action "Test" {
   uses = "jefftriplett/python-actions/action-pytest@master"
   args = "."
   needs = ["Build"]
@@ -25,6 +25,9 @@ action "jefftriplett/python-actions/action-pytest@master" {
 
 action "Master" {
   uses = "actions/bin/filter@master"
-  needs = ["jefftriplett/python-actions/action-pytest@master", "Test"]
+  needs = [
+    "Lint",
+    "Test",
+  ]
   args = "branch master"
 }
