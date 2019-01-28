@@ -2,7 +2,6 @@ workflow "Build and Test" {
   on = "push"
   resolves = [
     "Master",
-    "Lint",
   ]
 }
 
