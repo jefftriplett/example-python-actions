@@ -7,19 +7,19 @@ workflow "Build and Test" {
 }
 
 action "Build" {
-  uses = "jefftriplett/python-actions/action-pip@master"
-  args = "install -r requirements.txt"
+  uses = "jefftriplett/python-actions@master"
+  args = "pip install -r requirements.txt"
 }
 
 action "Lint" {
-  uses = "jefftriplett/python-actions/action-black@master"
-  args = "."
+  uses = "jefftriplett/python-actions@master"
+  args = "black --check ."
   needs = ["Build"]
 }
 
 action "Test" {
-  uses = "jefftriplett/python-actions/action-pytest@master"
-  args = "."
+  uses = "jefftriplett/python-actions@master"
+  args = "pytest"
   needs = ["Build"]
 }
 
