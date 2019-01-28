@@ -12,7 +12,7 @@ action "Build" {
 
 action "Lint" {
   uses = "jefftriplett/python-actions@master"
-  args = "black --check ."
+  args = "black --check test_python.py"
   needs = ["Build"]
 }
 
