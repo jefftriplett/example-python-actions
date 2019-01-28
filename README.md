@@ -1,2 +1,3 @@
 # example-python-actions
-An example GitHub Action using Python Actions
+
+An example GitHub Workflow using [Python Actions](https://github.com/jefftriplett/python-actions).
